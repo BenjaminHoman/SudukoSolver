@@ -155,16 +155,16 @@ function formatGrid(grid){
 }
 
 function main(grid){
-	console.log("Problem -------");
+	console.log("Problem ---------");
 	console.log(formatGrid(grid));
 	console.log("\n");
 
 	let solver = new SudukoSolver(grid);
 	solver.solutions.forEach(function(solution){
-		console.log("Solution ----------");
+		console.log("Solution --------");
 		console.log(formatGrid(solution));
 		console.log("\n");
 	});
 }
 
-main(grid1);
+main(grid5);
