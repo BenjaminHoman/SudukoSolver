@@ -9,7 +9,9 @@ class SudukoSolver {
 	/*
 	*	@param {[Array[int]]} - grid
 	*/
-	constructor(grid){
+	constructor(grid, maxSolutions){
+		this.maxSolutions = maxSolutions || 300;
+		this.solutionCount = 0;
 		this.grid = grid;
 		this.solutions = [];
 		this.solve();
@@ -68,6 +70,9 @@ class SudukoSolver {
 	*	the current path trace is wrong.
 	*/
 	solve(){
+		if (this.solutionCount >= this.maxSolutions){
+			return;
+		}
 		for (let y = 0; y < GRID_SIZE; y++){
 			for (let x = 0; x < GRID_SIZE; x++){
 				if (this.grid[y][x] == BLANK){
@@ -82,6 +87,7 @@ class SudukoSolver {
 				}
 			}
 		}
+		this.solutionCount++;
 		this.solutions.push(this.snapshot(this.grid));
 	}
 
@@ -94,6 +100,15 @@ class SudukoSolver {
 	}
 }
 
+let grid0 = [[0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0]];
 
 let grid1 = [[5,3,0,0,7,0,0,0,0],
 			[6,0,0,1,9,5,0,0,0],
@@ -167,4 +182,4 @@ function main(grid){
 	});
 }
 
-main(grid5);
+main(grid0);
